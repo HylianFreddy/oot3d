@@ -24,7 +24,13 @@ ActorInit Obj_Kibako_InitVars = {
 
 GLOBAL_ASM("binary/ObjKibako_Init.o")
 
-GLOBAL_ASM("binary/ObjKibako_Destroy.o")
+void ObjKibako_Destroy(Actor* actor, GameState* state) {
+    ObjKibako* self = (ObjKibako*)actor;
+    PlayState* play = (PlayState*)state;
+
+    Collider_DestroyCylinder(play, &self->collider);
+    FUN_00350f34(actor, &self->skelAnimModel, 0);
+}
 
 GLOBAL_ASM("binary/ObjKibako_Update.o")
 
