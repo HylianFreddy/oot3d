@@ -1248,8 +1248,6 @@ GLOBAL_ASM("binary/FUN_00144574.o")
 
 GLOBAL_ASM("binary/FUN_0014459c.o")
 
-GLOBAL_ASM("binary/ObjKibako_SetupIdle.o")
-
 GLOBAL_ASM("binary/FUN_001445e8.o")
 
 GLOBAL_ASM("binary/FUN_00144628.o")
@@ -13157,8 +13155,6 @@ GLOBAL_ASM("binary/ObjComb_Wait.o")
 GLOBAL_ASM("binary/EnFish_Respawning_SlowDown.o")
 
 GLOBAL_ASM("binary/FUN_003be8e4.o")
-
-GLOBAL_ASM("binary/ObjKibako_Idle.o")
 
 GLOBAL_ASM("binary/FUN_003bee08.o")
 

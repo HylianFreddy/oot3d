@@ -8,6 +8,9 @@ void ObjKibako_Destroy(Actor* actor, GameState* state);
 void ObjKibako_Update(Actor* actor, GameState* state);
 void ObjKibako_Draw(Actor* actor, GameState* state);
 
+void ObjKibako_SetupIdle(ObjKibako* self);
+void ObjKibako_Idle(ObjKibako* self, PlayState* play);
+
 GLOBAL_ASM("binary/z_Obj_Kibako.data.o")
 
 ActorInit Obj_Kibako_InitVars = {
@@ -30,6 +33,13 @@ void ObjKibako_Destroy(Actor* actor, GameState* state) {
 
     Collider_DestroyCylinder(play, &self->collider);
     FUN_00350f34(actor, &self->skelAnimModel, 0);
+}
+
+GLOBAL_ASM("binary/ObjKibako_Idle.o")
+
+void ObjKibako_SetupIdle(ObjKibako* self) {
+    self->actionFunc = ObjKibako_Idle;
+    self->actor.colChkInfo.mass = MASS_HEAVY;
 }
 
 GLOBAL_ASM("binary/ObjKibako_Update.o")
