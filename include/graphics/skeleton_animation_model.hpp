@@ -3,6 +3,14 @@
 
 #include "z3Dvec.hpp"
 
+typedef void (*SkeletonAnimationModelFunc)(struct SkeletonAnimationModel*);
+
+class SkeletonAnimationModel_VTable {
+public:
+    char unk_00[0x4];
+    SkeletonAnimationModelFunc destroy;
+};
+
 class SkeletonAnimationModel_unk_04 {
     char unk_00[0x34];
 }; // size = 0x34
@@ -60,7 +68,7 @@ public:
     void FUN_003721e0(MTX34* modelMtx);
     void FUN_00372170(s32 arg1);
 
-    void* vTable;
+    SkeletonAnimationModel_VTable* vTable;
     SkeletonAnimationModel_unk_04* unk_04;
     SkeletonAnimationModel_unk_08* unk_08;
     SkeletonAnimationModel_unk_0C* unk_0C;

@@ -24,7 +24,21 @@ ActorInit En_Si_InitVars = {
 
 GLOBAL_ASM("asm/EnSi_Init.s")
 
-GLOBAL_ASM("asm/EnSi_Destroy.s")
+void EnSi_Destroy(Actor* actor, GameState* state) {
+    PlayState* play = (PlayState*)state;
+    EnSi* self = (EnSi*)actor;
+
+    Collider_DestroyCylinder(play, &self->collider);
+    
+    for (int i = 0; i < 2; i++) {
+        SkeletonAnimationModel* skel = self->skelAnimModels[i];
+        if (skel != NULL) {
+            skel->vTable->destroy(skel);
+            self->skelAnimModels[i] = NULL;
+        }
+    }
+    return;
+}
 
 GLOBAL_ASM("asm/EnSi_Update.s")
 
