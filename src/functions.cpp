@@ -13066,15 +13066,11 @@ GLOBAL_ASM("asm/FUN_003ace80.s")
 
 GLOBAL_ASM("asm/FUN_003ad010.s")
 
-GLOBAL_ASM("asm/FUN_003ad218.s")
-
 GLOBAL_ASM("asm/EnFw_TurnToParentInitPos.s")
 
 GLOBAL_ASM("asm/FUN_003ad41c.s")
 
 GLOBAL_ASM("asm/EnFd_SpinAndSpawnFire.s")
-
-GLOBAL_ASM("asm/FUN_003adc80.s")
 
 GLOBAL_ASM("asm/FUN_003ade94.s")
 
@@ -13683,8 +13679,6 @@ GLOBAL_ASM("asm/FUN_003cff9c.s")
 GLOBAL_ASM("asm/FUN_003cfff4.s")
 
 GLOBAL_ASM("asm/FUN_003d04ac.s")
-
-GLOBAL_ASM("asm/FUN_003d0544.s")
 
 GLOBAL_ASM("asm/FUN_003d05e4.s")
 

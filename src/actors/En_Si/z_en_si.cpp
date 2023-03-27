@@ -8,6 +8,10 @@ void EnSi_Destroy(Actor* actor, GameState* state);
 void EnSi_Update(Actor* actor, GameState* state);
 void EnSi_Draw(Actor* actor, GameState* state);
 
+void FUN_003ad218(Actor* actor, GameState* state);
+void FUN_003adc80(Actor* actor, GameState* state);
+void FUN_003d0544(Actor* actor, GameState* state);
+
 GLOBAL_ASM("data/z_En_Si.data.o")
 
 ActorInit En_Si_InitVars = {
@@ -39,6 +43,12 @@ void EnSi_Destroy(Actor* actor, GameState* state) {
     }
     return;
 }
+
+GLOBAL_ASM("asm/FUN_003ad218.s")
+
+GLOBAL_ASM("asm/FUN_003adc80.s")
+
+GLOBAL_ASM("asm/FUN_003d0544.s")
 
 GLOBAL_ASM("asm/EnSi_Update.s")
 
