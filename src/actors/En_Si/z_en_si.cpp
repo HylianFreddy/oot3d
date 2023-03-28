@@ -8,9 +8,9 @@ void EnSi_Destroy(Actor* actor, GameState* state);
 void EnSi_Update(Actor* actor, GameState* state);
 void EnSi_Draw(Actor* actor, GameState* state);
 
-void FUN_003ad218(Actor* actor, GameState* state);
-void FUN_003adc80(Actor* actor, GameState* state);
-void FUN_003d0544(Actor* actor, GameState* state);
+void FUN_003ad218(EnSi* self, PlayState* play);
+void FUN_003adc80(EnSi* self, PlayState* play);
+void FUN_003d0544(EnSi* self, PlayState* play);
 
 GLOBAL_ASM("data/z_En_Si.data.o")
 
@@ -41,16 +41,13 @@ void EnSi_Destroy(Actor* actor, GameState* state) {
             self->skelAnimModels[i] = NULL;
         }
     }
-    return;
 }
 
 GLOBAL_ASM("asm/FUN_003ad218.s")
 
 GLOBAL_ASM("asm/FUN_003adc80.s")
 
-void FUN_003d0544(Actor* actor, GameState* state) {
-    PlayState* play = (PlayState*)state;
-    EnSi* self = (EnSi*)actor;
+void FUN_003d0544(EnSi* self, PlayState* play) {
     Player* player = GET_PLAYER(play);
 
     if ((gSaveContext.health != 0) && (play->unk_318C == 0)) {
