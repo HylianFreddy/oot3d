@@ -284,7 +284,9 @@ typedef struct PlayState {
     /* 0x2298 */ CutsceneContext       csCtx; // "demo_play"
     /* 0x2304 */ char                  unk_2304[0x059C];
     /* 0x28A0 */ MessageContext        msgCtx;
-    /* 0x2B80 */ char                  unk_2B80[0x0A80];
+    /* 0x2B80 */ char                  unk_2B80[0x060C];
+    /* 0x318C */ u16                   unk_318C;
+    /* 0x318E */ char                  unk_318E[0x0472];
     /* 0x3600 */ f32                   unk_3600;
     /* 0x3604 */ char                  unk_3604[0x0454];
     /* 0x3A58 */ ObjectContext         objectCtx;
@@ -364,7 +366,7 @@ typedef struct {
 } RestrictionFlags;
 
 // Game Info aka. Static Context
-// Data normally accessed through REG macros (see regs.h)
+// Data normally accessed through REG macros (see regs.hpp)
 typedef struct {
     /* 0x00 */ s32  regPage;   // 1 is first page
     /* 0x04 */ s32  regGroup;  // "register" group (R, RS, RO, RP etc.)

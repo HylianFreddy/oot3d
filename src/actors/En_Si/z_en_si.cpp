@@ -33,7 +33,7 @@ void EnSi_Destroy(Actor* actor, GameState* state) {
     EnSi* self = (EnSi*)actor;
 
     Collider_DestroyCylinder(play, &self->collider);
-    
+
     for (int i = 0; i < 2; i++) {
         SkeletonAnimationModel* skel = self->skelAnimModels[i];
         if (skel != NULL) {
@@ -48,7 +48,19 @@ GLOBAL_ASM("asm/FUN_003ad218.s")
 
 GLOBAL_ASM("asm/FUN_003adc80.s")
 
-GLOBAL_ASM("asm/FUN_003d0544.s")
+void FUN_003d0544(Actor* actor, GameState* state) {
+    PlayState* play = (PlayState*)state;
+    EnSi* self = (EnSi*)actor;
+    Player* player = GET_PLAYER(play);
+
+    if ((gSaveContext.health != 0) && (play->unk_318C == 0)) {
+        if (Message_GetState(&play->msgCtx) == TEXT_STATE_CLOSING) {
+            Actor_Kill(&self->actor);
+        } else {
+            player->actor.freezeTimer = (s32)(30.0f / SREG(30) + 0.5f);
+        }
+    }
+}
 
 GLOBAL_ASM("asm/EnSi_Update.s")
 
