@@ -98,8 +98,8 @@ typedef struct {
     /* 0x00EC */ SaveSceneFlags sceneFlags[124];
     /* 0x0E7C */ FaroresWindData fw;
     /* 0x0EA4 */ char         unk_EA4[0x0010];
-    /* 0x0EB4 */ u8           gsFlags[22]; //due to reordering, array is smaller
-    /* 0x0ECA */ char         unk_ECA[0x0006]; //the extra two bytes move here
+    /* 0x0EB4 */ s32          gsFlags[6];
+    /* 0x0ECC */ char         unk_ECC[0x0004];
     /* 0x0ED0 */ u32          unk_ED0; //horseback archery highscore?
     /* 0x0ED4 */ char         unk_ED4[0x0008];
     /* 0x0EDC */ u32          unk_EDC; //horse race record time?

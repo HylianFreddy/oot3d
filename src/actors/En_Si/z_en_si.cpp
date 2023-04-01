@@ -43,7 +43,24 @@ void EnSi_Destroy(Actor* actor, GameState* state) {
     }
 }
 
-GLOBAL_ASM("asm/FUN_003ad218.s")
+void FUN_003ad218(EnSi* self, PlayState* play) {
+    Player* player = GET_PLAYER(play);
+
+    Math_SmoothStepToF(&self->actor.scale.x, 0.25, 0.4, 1.0, 0.0);
+    Actor_SetScale(&self->actor, self->actor.scale.x);
+    self->actor.shape.rot.y += 0x400;
+
+    if (!(self->actor.flags & 0x2000)) {
+        Item_Give(play, ITEM_SKULL_TOKEN);
+        SET_GS_FLAGS((self->actor.params & 0x1F00) >> 8, self->actor.params & 0xFF);
+        player->actor.freezeTimer = (s32)(30.0f / SREG(30) + 0.5f);
+        FUN_00367c7c(play, 0xB4, NULL);
+        if ((gSaveContext.health != 0) && (play->unk_318C == 0)) {
+            FUN_0035c528(0x10005A6);
+        }
+        self->actionFunc = FUN_003d0544;
+    }
+}
 
 GLOBAL_ASM("asm/FUN_003adc80.s")
 

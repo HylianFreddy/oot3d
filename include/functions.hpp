@@ -143,7 +143,7 @@ void EffectSsHahen_SpawnBurst(PlayState* play, Vec3f* pos, f32 burstScale, s16 u
 void FUN_003716f0(PlayState* play, s16 entranceIndex, u32 sceneLoadFlag, u32 fadeTransition);
 s32 Math3D_PointInSquare2D(f32 upperLeftX, f32 lowerRightX, f32 upperLeftY, f32 lowerRightY, f32 x, f32 y);
 void FUN_0035239c(s16 arg0);
-void FUN_00367c7c(PlayState*, u16 textID, Actor* actor);
+void FUN_00367c7c(PlayState*, u16 textID, Actor* actor); // Message_StartTextbox
 void Audio_QueueSeqCmd(s32 arg0, s32 arg1, s32 arg2);
 void FUN_00354358(s32 arg0);
 void FUN_00374bb8(PlayState* play, Actor* actor, f32 arg2, s16 arg3, f32 arg4);
@@ -164,3 +164,5 @@ s32 FUN_0036bb28(Actor* actor, PlayState* play, f32 arg2);
 void FUN_0035ae08(Actor* actor, u32 sfxId);
 
 float sqrtf(float arg);
+u8 Item_Give(PlayState* play, u8 item);
+void FUN_0035c528(u32 sfxId); // Audio_PlayFanfare
