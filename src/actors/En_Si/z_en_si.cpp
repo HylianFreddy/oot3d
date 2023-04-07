@@ -80,7 +80,7 @@ void FUN_003adc80(EnSi* self, PlayState* play) {
 void FUN_003ad218(EnSi* self, PlayState* play) {
     Player* player = GET_PLAYER(play);
 
-    Math_SmoothStepToF(&self->actor.scale.x, 0.25, 0.4, 1.0, 0.0);
+    Math_SmoothStepToF(&self->actor.scale.x, 0.25f, 0.4f, 1.0f, 0.0f);
     Actor_SetScale(&self->actor, self->actor.scale.x);
     self->actor.shape.rot.y += 0x400;
 
@@ -108,7 +108,15 @@ void FUN_003d0544(EnSi* self, PlayState* play) {
     }
 }
 
-GLOBAL_ASM("asm/EnSi_Update.s")
+void EnSi_Update(Actor* actor, GameState* state) {
+    EnSi* self = (EnSi*)actor;
+    PlayState* play = (PlayState*)state;
+
+    Actor_MoveForward(&self->actor);
+    Actor_UpdateBgCheckInfo(play, &self->actor, 0.0f, 0.0f, 0.0f, 4);
+    self->actionFunc(self, play);
+    Actor_SetFocus(&self->actor, 16.0f);
+}
 
 GLOBAL_ASM("asm/EnSi_Draw.s")
 }
