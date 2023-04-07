@@ -118,5 +118,18 @@ void EnSi_Update(Actor* actor, GameState* state) {
     Actor_SetFocus(&self->actor, 16.0f);
 }
 
-GLOBAL_ASM("asm/EnSi_Draw.s")
+void EnSi_Draw(Actor* actor, GameState* state) {
+    EnSi* self = (EnSi*)actor;
+    PlayState* play = (PlayState*)state;
+
+    if (self->actionFunc != FUN_003d0544) {
+        self->unk_20C->animSpeed = !PauseContext_GetState() ? 2.0f : 0.0f;
+
+        for (int i = 0; i < 2; i++) {
+            self->skelAnimModels[i]->unk_AC = 1;
+            self->skelAnimModels[i]->FUN_003721e0(&(self->actor).modelMtx);
+            self->skelAnimModels[i]->FUN_00372170(NULL);
+        };
+    }
+}
 }
