@@ -166,3 +166,4 @@ void FUN_0035ae08(Actor* actor, u32 sfxId);
 float sqrtf(float arg);
 u8 Item_Give(PlayState* play, u8 item);
 void FUN_0035c528(u32 sfxId); // Audio_PlayFanfare
+s32 Player_InCsMode(PlayState* play);

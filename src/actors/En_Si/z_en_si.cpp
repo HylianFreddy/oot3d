@@ -8,8 +8,8 @@ void EnSi_Destroy(Actor* actor, GameState* state);
 void EnSi_Update(Actor* actor, GameState* state);
 void EnSi_Draw(Actor* actor, GameState* state);
 
-void FUN_003ad218(EnSi* self, PlayState* play);
 void FUN_003adc80(EnSi* self, PlayState* play);
+void FUN_003ad218(EnSi* self, PlayState* play);
 void FUN_003d0544(EnSi* self, PlayState* play);
 
 GLOBAL_ASM("data/z_En_Si.data.o")
@@ -43,6 +43,40 @@ void EnSi_Destroy(Actor* actor, GameState* state) {
     }
 }
 
+void FUN_003adc80(EnSi* self, PlayState* play) {
+    Player* player = GET_PLAYER(play);
+
+    if (self->actor.flags & 0x2000) {
+        self->actionFunc = FUN_003ad218;
+    } else {
+        Math_SmoothStepToF(&self->actor.scale.x, 0.25f, SREG(30) * 0.33333335f * 0.4f, 1.0f, 0.0f);
+        Actor_SetScale(&self->actor, self->actor.scale.x);
+        self->actor.shape.rot.y += SREG(30) * 0.33333335f * 1024.0f;
+
+        if (!Player_InCsMode(play)) {
+            if (self->collider.base.acFlags & AC_HIT) {
+                self->collider.base.acFlags &= ~AC_HIT;
+            }
+
+            if (self->collider.base.ocFlags2 & OC2_HIT_PLAYER) {
+                self->collider.base.ocFlags2 &= ~OC2_HIT_PLAYER;
+                Item_Give(play, ITEM_SKULL_TOKEN);
+                SET_GS_FLAGS((self->actor.params & 0x1F00) >> 8, self->actor.params & 0xFF);
+                player->actor.freezeTimer = (s32)(30.0f / SREG(30) + 0.5f);
+                FUN_00367c7c(play, 0xB4, NULL);
+                if ((gSaveContext.health != 0) && (play->unk_318C == 0)) {
+                    FUN_0035c528(0x10005A6);
+                }
+                self->actionFunc = FUN_003d0544;
+            } else {
+                Collider_UpdateCylinder(&self->actor, &self->collider);
+                CollisionCheck_SetAC(play, &play->colChkCtx, &self->collider.base);
+                CollisionCheck_SetOC(play, &play->colChkCtx, &self->collider.base);
+            }
+        }
+    }
+}
+
 void FUN_003ad218(EnSi* self, PlayState* play) {
     Player* player = GET_PLAYER(play);
 
@@ -61,8 +95,6 @@ void FUN_003ad218(EnSi* self, PlayState* play) {
         self->actionFunc = FUN_003d0544;
     }
 }
-
-GLOBAL_ASM("asm/FUN_003adc80.s")
 
 void FUN_003d0544(EnSi* self, PlayState* play) {
     Player* player = GET_PLAYER(play);
